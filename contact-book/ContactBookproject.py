@@ -2,9 +2,10 @@ import json
         
 def load_contacts():
     try:
-        with open("PROJECT/contact.json","r") as file:
+        with open("contact.json","r") as file:
             return json.load(file)
     except FileNotFoundError:
+        print("Contacts file not found. Starting with an empty contact list.")
         return []
     except json.JSONDecodeError:
         print("Contacts file is empty or corrupted. Starting with an empty contact list.")
@@ -13,7 +14,7 @@ def load_contacts():
              
 def save_contacts(contacts):
     try:
-        with open("PROJECT/contact.json","w") as file:
+        with open("contact.json","w") as file:
             json.dump(contacts,file,indent=4)
     except OSError:
         print("Could not save contacts")
@@ -25,7 +26,7 @@ def show_contacts(contacts):
         return
     
     for contact in contacts:
-        print(f"{contact["name"]} : {contact["number"]}")  
+        print(f"{contact['name']} : {contact['number']}")  
         
         
 def add_contact(contacts,name,number):
@@ -105,12 +106,20 @@ def main():
                 
         elif choice=='4':
             name=input("Enter the name of the contact to update: ").strip()
+            if not name:            
+                print("Name cannot be empty.")
+                continue
+            contact=search_contact(contacts,name)
+            if not contact:
+                print("Contact not found.")
+                continue
+            
             new_number=input("Enter new phone number: ").strip()
             
-            if name and new_number:            
-                update_contact(contacts,name,new_number)
+            if not is_valid(new_number):
+                print("Invalid phone number.")
             else:
-                print("Name and number cannot be empty")
+                update_contact(contacts, name, new_number)
             
             
         elif choice=='5':
