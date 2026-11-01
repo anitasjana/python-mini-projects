@@ -25,12 +25,12 @@ def check_guess(random_number, guess):
 
 def play_game():
     random_number=get_random_number()
-    c=0
+    attempts =0
     while True:
         guess=get_user_guess()
-        c+=1
+        attempts +=1
         if guess==random_number:
-            print(f"Congratulations! You guessed it in {c}  attempts.")
+            print(f"Congratulations! You guessed it in {attempts }  attempts.")
             break
         else:
             check_guess(random_number,guess)

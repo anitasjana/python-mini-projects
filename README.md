@@ -61,3 +61,31 @@ A console-based program to manage student records using Python functions and a l
 ```bash
 python student-management/student_management.py
 ```
+
+### 3. Number Guessing Game
+
+A simple console-based number guessing game.
+
+**Technologies used:**
+
+- Python
+- `random` module
+- `while` loop
+- Exception handling
+- Functions
+
+**Features:**
+
+- Generate a random number between 1 and 100
+- Take user guesses
+- Show “Too high!” or “Too low!” hints
+- Count the number of attempts
+- Handle invalid input
+
+**Folder:** `number-guessing-game/`
+
+**Run:**
+
+```bash
+python number-guessing-game/number_guessing_game.py
+```
